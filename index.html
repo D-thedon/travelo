@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking Form</title>
+    <link rel="stylesheet" href="ticket.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Travelo</h1>
+        <form id="booking-form">
+            <!-- Step 1: Flight Booking -->
+            <div class="step" id="step-1">
+                <h2>Step 1: Book Your Flight</h2>
+                <label for="departure-city">Departure City:</label>
+                <input type="text" id="departure-city" name="departure-city" required>
+
+                <label for="destination-city">Destination City:</label>
+                <input type="text" id="destination-city" name="destination-city" required>
+
+                <label for="departure-date">Departure Date:</label>
+                <input type="date" id="departure-date" name="departure-date" required>
+
+                <label for="return-date">Return Date:</label>
+                <input type="date" id="return-date" name="return-date" required>
+
+                <button type="button" onclick="nextStep(2)">Next</button>
+            </div>
+
+            <!-- Step 2: Hotel Booking -->
+            <div class="step" id="step-2">
+                <h2>Step 2: Book Your Hotel</h2>
+                <label for="hotel-name">Hotel Name:</label>
+                <input type="text" id="hotel-name" name="hotel-name" required>
+
+                <label for="check-in-date">Check-in Date:</label>
+                <input type="date" id="check-in-date" name="check-in-date" required>
+
+                <label for="check-out-date">Check-out Date:</label>
+                <input type="date" id="check-out-date" name="check-out-date" required>
+
+                <label for="rooms">Number of Rooms:</label>
+                <input type="number" id="rooms" name="rooms" min="1" required>
+
+                <button type="button" onclick="nextStep(3)">Next</button>
+                <button type="button" onclick="previousStep(1)">Back</button>
+            </div>
+
+            <!-- Step 3: Car Rental -->
+            <div class="step" id="step-3">
+                <h2>Step 3: Rent a Car</h2>
+                <label for="car-type">Car Type:</label>
+                <select id="car-type" name="car-type" required>
+                    <option value="economy">Economy</option>
+                    <option value="compact">Compact</option>
+                    <option value="full-size">Full-size</option>
+                    <option value="luxury">Luxury</option>
+                </select>
+
+                <label for="pickup-location">Pickup Location:</label>
+                <input type="text" id="pickup-location" name="pickup-location" required>
+
+                <label for="pickup-date">Pickup Date:</label>
+                <input type="date" id="pickup-date" name="pickup-date" required>
+
+                <label for="dropoff-date">Dropoff Date:</label>
+                <input type="date" id="dropoff-date" name="dropoff-date" required>
+
+                <button type="submit">Submit</button>
+                <button type="button" onclick="previousStep(2)">Back</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function nextStep(step) {
+            document.getElementById('step-' + (step - 1)).style.display = 'none';
+            document.getElementById('step-' + step).style.display = 'block';
+        }
+
+        function previousStep(step) {
+            document.getElementById('step-' + (step + 1)).style.display = 'none';
+            document.getElementById('step-' + step).style.display = 'block';
+        }
+
+        // Hide all steps except for the first one when the page loads
+        window.onload = function() {
+            for (let i = 2; i <= 3; i++) {
+                document.getElementById('step-' + i).style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
